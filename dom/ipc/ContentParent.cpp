@@ -825,12 +825,12 @@ ContentParent::CreateBrowserOrApp(const TabContext& aContext,
         nsAutoString parentAppURL;
         aFrameElement->GetAttr(kNameSpaceID_None,
                                nsGkAtoms::parentapp, parentAppURL);
-        nsAdoptingString systemAppURL =
-            Preferences::GetString("browser.homescreenURL");
+        nsAdoptingString systemManifestURL =
+            Preferences::GetString("b2g.system_manifest_url");
         nsCOMPtr<nsIAppsService> appsService =
             do_GetService(APPS_SERVICE_CONTRACTID);
         if (!parentAppURL.IsEmpty() &&
-            !parentAppURL.Equals(systemAppURL) &&
+            !parentAppURL.Equals(systemManifestURL) &&
             appsService) {
             nsCOMPtr<mozIApplication> parentApp;
             nsCOMPtr<mozIApplication> app;
